@@ -4,12 +4,12 @@ import java.awt.image.BufferedImage;
 import java.awt.Graphics2D;
 import java.awt.Font;
 
-import main.GamePanel;
 import math.Vector2f;
 import ui.Button;
 import util.KeyHandler;
 import util.MouseHandler;
 import audio.Audio;
+import main.GamePanel;
 public class PauseState extends GameState {
 
     private Button btnResume;

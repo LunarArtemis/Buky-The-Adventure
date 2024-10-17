@@ -3,9 +3,9 @@ package util;
 import java.awt.Graphics;
 import java.awt.Color;
 
-import main.GamePanel;
 import state.PlayState;
 import entity.Entity;
+import main.GamePanel;
 import math.Vector2f;
 import math.AABB;
 

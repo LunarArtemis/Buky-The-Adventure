@@ -72,25 +72,26 @@ public class GameStateManager {
     }
 
     public void loadState(int state) {
-        if (state == PLAY) {
-            gs[state] = new PlayState(this, cam);
+        System.out.println("Loading state: " + state);  // Debug log
+        try {
+            if (state == PLAY) {
+                gs[state] = new PlayState(this, cam);
+            } else if (state == MENU) {
+                gs[state] = new MenuState(this);
+            } else if (state == PAUSE) {
+                gs[state] = new PauseState(this);
+            } else if (state == GAMEOVER) {
+                gs[state] = new GameOverState(this);
+            } else if (state == DIALOG) {
+                gs[state] = new DialogState(this, PlayState.oldman);
+            } else if (state == END) {
+                gs[state] = new EndState(this);
+            }
+        } catch (Exception e) {
+            System.err.println("Failed to load state: " + state);
+            e.printStackTrace();
         }
-        if (state == MENU) {
-            gs[state] = new MenuState(this);
-        }
-        if (state == PAUSE) {
-            gs[state] = new PauseState(this);
-        }
-        if (state == GAMEOVER) {
-            gs[state] = new GameOverState(this);
-        }
-        if (state == DIALOG) {
-            gs[state] = new DialogState(this, PlayState.oldman);
-        }
-        if (state == END) {
-            gs[state] = new EndState(this);
-        }
-    }
+    }    
 
     public void unloadState(int state) {
         gs[state] = null;
@@ -109,8 +110,9 @@ public class GameStateManager {
     }
 
     public void addAndpop(int state, int remove) {
-        unloadState(state);
+        unloadState(CurrentState);
         loadState(state);
+        CurrentState = state;
     }
 
     public void update(double time) {
